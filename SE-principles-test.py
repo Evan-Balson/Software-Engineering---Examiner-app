@@ -57,9 +57,9 @@ def generate_question():
     )
 
     text = response.choices[0].message.content.strip()
-    print("\n--- Raw OpenAI Response ---")
-    print(text)
-    print("--- End of Raw Response ---\n")
+    #print("\n--- Raw OpenAI Response ---")
+    #print(text)
+    #print("--- End of Raw Response ---\n")
 
     lines = text.splitlines()
     question_text = lines[0].replace("Question: ", "")
@@ -69,8 +69,8 @@ def generate_question():
         if line.startswith("true:") or line.startswith("false:"):
             answers_raw.append(line)
 
-    print("Parsed Question:", question_text)
-    print("Raw Answers:", answers_raw)
+    #print("Parsed Question:", question_text)
+    #print("Raw Answers:", answers_raw)
 
     answers = []
     correct_answer = None
@@ -84,9 +84,9 @@ def generate_question():
     random.shuffle(answers)
     correct_index = answers.index(correct_answer)
 
-    print("Shuffled Answers:", answers)
-    print("Correct Index:", correct_index)
-    print("Correct Answer:", answers[correct_index])
+    #print("Shuffled Answers:", answers)
+    #print("Correct Index:", correct_index)
+    #print("Correct Answer:", answers[correct_index])
 
     question_history.append(question_text)
     return question_text, answers, correct_index
@@ -95,12 +95,12 @@ def display_question():
     global current_answers, current_correct_index
     question_text, current_answers, current_correct_index = generate_question()
 
-    print("\n--- New Question Displayed ---")
-    print("Question:", question_text)
-    for i, ans in enumerate(current_answers):
-        print(f"{option_labels[i]}. {ans}")
-    print("Correct Answer:", current_answers[current_correct_index])
-    print("--- End of Question ---\n")
+    #print("\n--- New Question Displayed ---")
+    #print("Question:", question_text)
+    #for i, ans in enumerate(current_answers):
+        #print(f"{option_labels[i]}. {ans}")
+    #print("Correct Answer:", current_answers[current_correct_index])
+    #print("--- End of Question ---\n")
 
     question_label.config(text=question_text)
     selected_option.set(-1)
@@ -121,8 +121,8 @@ def check_answer():
         status_label.config(text="Please select an answer before submitting.", fg="orange")
         return
 
-    print(f"User selected option {option_labels[idx]}: {current_answers[idx]}")
-    print(f"Correct answer is {option_labels[current_correct_index]}: {current_answers[current_correct_index]}")
+    #print(f"User selected option {option_labels[idx]}: {current_answers[idx]}")
+    #print(f"Correct answer is {option_labels[current_correct_index]}: {current_answers[current_correct_index]}")
 
     if idx == current_correct_index:
         status_label.config(text="Great job, you're correct!", fg="#00C853")  # Green
