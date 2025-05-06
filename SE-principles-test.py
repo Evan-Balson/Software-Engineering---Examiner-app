@@ -198,7 +198,7 @@ generate_btn.grid(row=0, column=1, padx=10)
 score_label = tk.Label(root, text="Score: ✅ 0 ❌ 0", font=("Segoe UI", 12), bg="#185488", fg="white")
 score_label.pack(pady=10)
 
-status_label = tk.Label(root, text="", font=("Segoe UI", 12), bg="#185488")
+status_label = tk.Label(root, wraplength=750, text="", font=("Segoe UI", 12), bg="#185488")
 status_label.pack(pady=5)
 
 root.bind('<Configure>', update_wraplength)
