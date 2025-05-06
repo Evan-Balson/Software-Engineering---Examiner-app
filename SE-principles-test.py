@@ -27,14 +27,12 @@ root.config(bg="#f5f5f5")
 root.geometry("800x600")
 root.resizable(False, False)  # Make the window fixed size
 
-
 selected_option = tk.IntVar()
 selected_option.set(-1)
 
-
 def generate_question():
     prompt = f"""
-    You are a DevOps exam question generator. You will generate ONE multiple choice question related to Software Development 2 topics such as SDLC, Agile, DevOps, CI/CD, data ethics, Jira, Kanban, Scrum. Do not repeat any of these questions:
+    You are a DevOps exam question generator. You will generate ONE multiple choice question related to Software Development and Software Engineering topics such as SDLC, Agile, DevOps, CI/CD, data ethics, Jira, Kanban, Scrum. Do not repeat any of these questions:
     {question_history}
 
     Your response must be formatted like this:
@@ -93,7 +91,6 @@ def generate_question():
     question_history.append(question_text)
     return question_text, answers, correct_index
 
-
 def display_question():
     global current_answers, current_correct_index
     question_text, current_answers, current_correct_index = generate_question()
@@ -111,46 +108,52 @@ def display_question():
         answer_buttons[i].config(text=f"{option_labels[i]}. {current_answers[i]}")
     generate_btn.config(text="Next Question", state="disabled")
     submit_btn.config(state="normal")
-
+    status_label.config(text="", fg="#333333")
 
 def check_answer():
     idx = selected_option.get()
 
     if not current_answers or current_correct_index == -1:
-        messagebox.showwarning("Warning", "Please generate a question first.")
+        status_label.config(text="Please generate a question first.", fg="orange")
         return
 
     if idx not in range(len(current_answers)):
-        messagebox.showwarning("Warning", "Please select an answer before submitting.")
+        status_label.config(text="Please select an answer before submitting.", fg="orange")
         return
 
     print(f"User selected option {option_labels[idx]}: {current_answers[idx]}")
     print(f"Correct answer is {option_labels[current_correct_index]}: {current_answers[current_correct_index]}")
 
     if idx == current_correct_index:
-        messagebox.showinfo("Result", "Great job, you're correct!")
+        status_label.config(text="Great job, you're correct!", fg="green")
         score['correct'] += 1
     else:
         correct = f"{option_labels[current_correct_index]}. {current_answers[current_correct_index]}"
-        messagebox.showerror("Result", f"The correct answer was: {correct}")
+        status_label.config(text=f"The correct answer was: {correct}", fg="red")
         score['wrong'] += 1
 
     update_score()
     submit_btn.config(state="disabled")
     generate_btn.config(state="normal")
 
-
 def update_score():
     score_label.config(text=f"Score: ✅ {score['correct']} ❌ {score['wrong']}")
-
 
 def update_wraplength(event=None):
     wrap = root.winfo_width() - 100
     for btn in answer_buttons:
         btn.config(wraplength=wrap)
 
-question_label = tk.Label(root, text="Click 'Generate Question' to start", wraplength=850, justify="left", font=("Segoe UI", 14), bg="#f5f5f5")
-question_label.pack(pady=20)
+question_label = tk.Label(
+    root,
+    text="Click 'Generate Question' to start",
+    wraplength=760,
+    justify="left",
+    anchor="w",
+    font=("Segoe UI", 14),
+    bg="#f5f5f5"
+)
+question_label.pack(pady=20, padx=20)
 
 answer_frame = tk.Frame(root, bg="#f5f5f5")
 answer_frame.pack()
@@ -190,6 +193,9 @@ generate_btn.grid(row=0, column=1, padx=10)
 
 score_label = tk.Label(root, text="Score: ✅ 0 ❌ 0", font=("Segoe UI", 12), bg="#f5f5f5")
 score_label.pack(pady=10)
+
+status_label = tk.Label(root, text="", font=("Segoe UI", 12), bg="#f5f5f5")
+status_label.pack(pady=5)
 
 root.bind('<Configure>', update_wraplength)
 root.mainloop()
