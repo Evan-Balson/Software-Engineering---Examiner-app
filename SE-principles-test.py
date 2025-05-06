@@ -100,7 +100,7 @@ def generate_question():
             answers.append(answer_text.strip())
 
     if correct_answer is None or correct_answer not in answers:
-        raise ValueError("Malformed response: Correct answer not found or missing.")
+        raise ValueError("Malformed response: Correct answer not found or missing.\n Don't worry. Just continue with the test.")
 
     random.shuffle(answers)
     correct_index = answers.index(correct_answer)
