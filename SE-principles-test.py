@@ -3,13 +3,18 @@ import openai
 from openai import OpenAI
 import tkinter as tk
 from tkinter import messagebox
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Store history to avoid duplicates
 question_history = []
 score = {'correct': 0, 'wrong': 0}
 
-# Replace with your actual API key
-client = OpenAI(api_key="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")
+# Initialize OpenAI client with API key from .env
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 current_answers = []
 current_correct_index = -1
