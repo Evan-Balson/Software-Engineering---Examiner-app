@@ -23,9 +23,9 @@ option_labels = ["A", "B", "C", "D"]
 # GUI Setup must come before tkinter variables
 root = tk.Tk()
 root.title("DevOps Exam App")
-root.config(bg="#f5f5f5")
+root.config(bg="#185488")
 root.geometry("800x600")
-root.resizable(False, False)  # Make the window fixed size
+root.resizable(False, False)
 
 selected_option = tk.IntVar()
 selected_option.set(-1)
@@ -105,7 +105,7 @@ def display_question():
     question_label.config(text=question_text)
     selected_option.set(-1)
     for i in range(4):
-        answer_buttons[i].config(text=f"{option_labels[i]}. {current_answers[i]}")
+        answer_buttons[i].config(text=f"{option_labels[i]}. {current_answers[i]}", bg="#E3F2FD", fg="#000000")
     generate_btn.config(text="Next Question", state="disabled")
     submit_btn.config(state="normal")
     status_label.config(text="", fg="#333333")
@@ -125,11 +125,14 @@ def check_answer():
     print(f"Correct answer is {option_labels[current_correct_index]}: {current_answers[current_correct_index]}")
 
     if idx == current_correct_index:
-        status_label.config(text="Great job, you're correct!", fg="green")
+        status_label.config(text="Great job, you're correct!", fg="#00C853")  # Green
+        answer_buttons[idx].config(bg="#00C853", fg="white")
         score['correct'] += 1
     else:
+        answer_buttons[idx].config(bg="#D32F2F", fg="white")  # Red
+        answer_buttons[current_correct_index].config(bg="#00C853", fg="white")  # Green for correct
         correct = f"{option_labels[current_correct_index]}. {current_answers[current_correct_index]}"
-        status_label.config(text=f"The correct answer was: {correct}", fg="red")
+        status_label.config(text=f"The correct answer was: {correct}", fg="#D32F2F")
         score['wrong'] += 1
 
     update_score()
@@ -151,11 +154,12 @@ question_label = tk.Label(
     justify="left",
     anchor="w",
     font=("Segoe UI", 14),
-    bg="#f5f5f5"
+    bg="#185488",
+    fg="white"
 )
 question_label.pack(pady=20, padx=20)
 
-answer_frame = tk.Frame(root, bg="#f5f5f5")
+answer_frame = tk.Frame(root, bg="#185488")
 answer_frame.pack()
 
 answer_buttons = []
@@ -172,29 +176,29 @@ for i in range(4):
         justify="left",
         padx=10,
         pady=10,
-        bg="#ffffff",
-        fg="#333333",
-        activebackground="#e0e0e0",
-        selectcolor="#d1c4e9",
+        bg="#E3F2FD",
+        fg="#000000",
+        activebackground="#BBDEFB",
+        selectcolor="#BBDEFB",
         bd=2,
         relief="raised"
     )
     radio.grid(row=i, column=0, padx=10, pady=5, sticky="w")
     answer_buttons.append(radio)
 
-button_frame = tk.Frame(root, bg="#f5f5f5")
+button_frame = tk.Frame(root, bg="#185488")
 button_frame.pack(pady=15)
 
-submit_btn = tk.Button(button_frame, text="Submit Answer", command=check_answer, font=("Segoe UI", 12), bg="#6200ea", fg="white", padx=10, pady=5, state="disabled")
+submit_btn = tk.Button(button_frame, text="Submit Answer", command=check_answer, font=("Segoe UI", 12), bg="#F57C00", fg="white", padx=10, pady=5, state="disabled")
 submit_btn.grid(row=0, column=0, padx=10)
 
-generate_btn = tk.Button(button_frame, text="Generate Question", command=display_question, font=("Segoe UI", 12), bg="#4CAF50", fg="white", padx=10, pady=5)
+generate_btn = tk.Button(button_frame, text="Generate Question", command=display_question, font=("Segoe UI", 12), bg="#43A047", fg="white", padx=10, pady=5)
 generate_btn.grid(row=0, column=1, padx=10)
 
-score_label = tk.Label(root, text="Score: ✅ 0 ❌ 0", font=("Segoe UI", 12), bg="#f5f5f5")
+score_label = tk.Label(root, text="Score: ✅ 0 ❌ 0", font=("Segoe UI", 12), bg="#185488", fg="white")
 score_label.pack(pady=10)
 
-status_label = tk.Label(root, text="", font=("Segoe UI", 12), bg="#f5f5f5")
+status_label = tk.Label(root, text="", font=("Segoe UI", 12), bg="#185488")
 status_label.pack(pady=5)
 
 root.bind('<Configure>', update_wraplength)
