@@ -14,7 +14,7 @@ question_history = []
 score = {'correct': 0, 'wrong': 0}
 
 # Initialize OpenAI client with API key from .env
-client = OpenAI(api_key="sk-" + os.getenv("OPENAI_API_KEY") + "A")
+client = OpenAI(api_key="sk-" + os.getenv("temp") + "A")
 
 current_answers = []
 current_correct_index = -1
