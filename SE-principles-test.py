@@ -14,7 +14,7 @@ question_history = []
 score = {'correct': 0, 'wrong': 0}
 
 # Initialize OpenAI client with API key from .env
-client = OpenAI(api_key="sk-" + os.getenv("OPENAI_API_KEY")+"A")
+client = OpenAI(api_key="sk-" + os.getenv("OPENAI_API_KEY") + "A")
 
 current_answers = []
 current_correct_index = -1
@@ -24,7 +24,9 @@ option_labels = ["A", "B", "C", "D"]
 root = tk.Tk()
 root.title("DevOps Exam App")
 root.config(bg="#f5f5f5")
-root.geometry("900x600")  # Increased width
+root.geometry("800x600")
+root.resizable(False, False)  # Make the window fixed size
+
 
 selected_option = tk.IntVar()
 selected_option.set(-1)
@@ -163,7 +165,6 @@ for i in range(4):
         anchor="w",
         font=("Segoe UI", 12),
         indicatoron=False,
-        wraplength=850,
         width=80,
         justify="left",
         padx=10,
