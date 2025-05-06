@@ -125,14 +125,14 @@ def check_answer():
     #print(f"Correct answer is {option_labels[current_correct_index]}: {current_answers[current_correct_index]}")
 
     if idx == current_correct_index:
-        status_label.config(text="Great job, you're correct!", fg="#00C853")  # Green
+        status_label.config(text="Great job, you're correct!", fg="#13ff45")  # Green
         answer_buttons[idx].config(bg="#00C853", fg="white")
         score['correct'] += 1
     else:
         answer_buttons[idx].config(bg="#D32F2F", fg="white")  # Red
         answer_buttons[current_correct_index].config(bg="#00C853", fg="white")  # Green for correct
         correct = f"{option_labels[current_correct_index]}. {current_answers[current_correct_index]}"
-        status_label.config(text=f"The correct answer was: {correct}", fg="#D32F2F")
+        status_label.config(text=f"The correct answer was: {correct}", fg="#fff832")
         score['wrong'] += 1
 
     update_score()
