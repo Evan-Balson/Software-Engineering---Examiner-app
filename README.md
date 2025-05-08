@@ -8,7 +8,7 @@
 * [x] step 4: create a .env file
 * [x] step 5: paste the following into the .env file: 
 
-#### APP_K=proj-4Ta0nyB_Ej9HECT7vJMPVUA3ca_N5DCI7R2wlmr15pnaUV0DIR2uXdeAe_FIsurl6SH7M1PVXST3BlbkFJ4F6UciFI60w9j2IHP16Scgh4HJ5ns3xqaeb9etHpbMo3UnPCzvYx1fj3dppacVfmHE_F4z1Lc
+#### APP_K=proj-XID2er9LY06dHsRujPhZhPVLi4N6IbvKtLw35CGAzC0FKvyMjk7RvLXk7KnxEEdU9tuLan6KrhT3BlbkFJ0RAojhEY0_ilNJRTjdsFxSIK3rdAFmeJHk5rpDDbIoKx0j-74guwFXUb71Or7MWM7lmdHpuKc
 * [x]  step 6: run the program
 
 ## Tools
